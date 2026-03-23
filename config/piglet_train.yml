@@ -1,0 +1,48 @@
+# Restormer
+CUDA_VISIBLE_DEVICES=2 python piglet_main.py --trainer_mode train --network Restormer \
+--checkpoint_dir Restormer --tensorboard_dir Restormer \
+
+# Restormer_GGB3_Encoder
+CUDA_VISIBLE_DEVICES=2 python piglet_main.py --trainer_mode train --network Restormer_GGB3_Encoder \
+--checkpoint_dir Restormer_GGB3_Encoder --tensorboard_dir Restormer_GGB3_Encoder \
+
+# Restormer_Pre_GGB3_Encoder
+CUDA_VISIBLE_DEVICES=0 python piglet_main.py --trainer_mode train --network Restormer_GGB3_Encoder \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_Pre_GGB3_Encoder --tensorboard_dir Restormer_Pre_GGB3_Encoder \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/piglet/" \
+--dataset_name piglet \
+--dataset_shape 256 \
+--epochs 120
+
+# AMIR
+CUDA_VISIBLE_DEVICES=0 python piglet_main.py --trainer_mode train --network AMIR \
+--checkpoint_dir AMIR --tensorboard_dir AMIR \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/piglet/" \
+--dataset_name piglet \
+--dataset_shape 256 \
+--epochs 120
+
+# NAFNet
+CUDA_VISIBLE_DEVICES=1 python piglet_main.py --trainer_mode train --network NAFNet \
+--checkpoint_dir NAFNet --tensorboard_dir NAFNet \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/piglet/" \
+--dataset_name piglet \
+--dataset_shape 256 \
+--epochs 120
+
+# PromptIR 
+CUDA_VISIBLE_DEVICES=2 python piglet_main.py --trainer_mode train --network PromptIR \
+--checkpoint_dir PromptIR --tensorboard_dir PromptIR \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/piglet/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/piglet/" \
+--dataset_name piglet \
+--dataset_shape 256 \
+--epochs 120

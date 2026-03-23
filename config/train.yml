@@ -1,0 +1,321 @@
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb/2' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/resume/ckpt2/Restormer/Restormer-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/resume/ckpt2/Restormer/Restormer-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 --epochs 90 \
+
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb/2' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/resume/ckpt2/Restormer/Restormer-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/resume/ckpt2/Restormer/Restormer-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 --epochs 90 \
+
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 \
+--num_train 10 --num_val 10
+
+# AdaIR
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network AdaIR \
+--checkpoint_dir AdaIR --tensorboard_dir AdaIR \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb2/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/ckpt/AdaIR/AdaIR-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/ckpt/AdaIR/AdaIR-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 --epochs 90
+# Restormer 
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network Restormer \
+--checkpoint_dir Restormer --tensorboard_dir Restormer \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb2/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/resume/ckpt2/Restormer/Restormer-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/resume/ckpt2/Restormer/Restormer-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 --epochs 90
+
+# Restormer_Pre 
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network Restormer \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_Pre --tensorboard_dir Restormer_Pre \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb2/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/ckpt/Restormer_Pre/Restormer_Pre-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/ckpt/Restormer_Pre/Restormer_Pre-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 --epochs 90
+# Restormer_GGB
+python main.py --trainer_mode train --network Restormer_GGB \
+--checkpoint_dir Restormer_GGB --tensorboard_dir Restormer_GGB \
+
+# Restormer_GGB2
+python main.py --trainer_mode train --network Restormer_GGB2 \
+--checkpoint_dir Restormer_GGB2 --tensorboard_dir Restormer_GGB2 \
+
+# Restormer_GGB_Pre
+python main.py --trainer_mode train --network Restormer_GGB \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_GGB_Pre --tensorboard_dir Restormer_GGB_Pre \
+
+# Restormer_GGB2_Pre
+python main.py --trainer_mode train --network Restormer_GGB2 \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_GGB2_Pre --tensorboard_dir Restormer_GGB2_Pre \
+
+# Restormer_GGB3
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network Restormer_GGB3 \
+--checkpoint_dir Restormer_GGB3 --tensorboard_dir Restormer_GGB3 \
+
+
+# Restormer_GGB3_Pre_CL 
+python main.py --trainer_mode train --network Restormer_GGB3_CL \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_GGB3_Pre_CL --tensorboard_dir Restormer_GGB3_Pre_CL \
+
+# Restormer_CL 
+python main.py --trainer_mode train --network Restormer_CL \
+--checkpoint_dir Restormer_CL --tensorboard_dir Restormer_CL \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 --num_train 10 --num_val 10 --epochs 90 
+# Restormer_GGB3CL
+python main.py --trainer_mode train --network Restormer_GGB3CL \
+--checkpoint_dir Restormer_GGB3CL --tensorboard_dir Restormer_GGB3CL \
+
+# Restormer_GGB3_Encoder
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network Restormer_GGB3_Encoder \
+--checkpoint_dir Restormer_GGB3_Encoder --tensorboard_dir Restormer_GGB3_Encoder \
+
+
+# Restormer_GGB3CLAndCL
+python main.py --trainer_mode train --network Restormer_GGB3CLAndCL \
+--checkpoint_dir Restormer_GGB3CLAndCL --tensorboard_dir Restormer_GGB3CLAndCL \
+
+# Restormer_GGB3_Encoder_Decoder
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network Restormer_GGB3_Encoder_Decoder \
+--checkpoint_dir Restormer_GGB3_Encoder_Decoder --tensorboard_dir Restormer_GGB3_Encoder_Decoder \
+
+
+# Restormer_GGB3_Encoder_Decoder_v2
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network Restormer_GGB3_Encoder_Decoder_v2 \
+--checkpoint_dir Restormer_GGB3_Encoder_Decoder_v2 --tensorboard_dir Restormer_GGB3_Encoder_Decoder_v2 \
+
+# Restormer_GGB3_Encoder_GGB3CLv2
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network Restormer_GGB3_Encoder_GGB3CLv2 \
+--checkpoint_dir Restormer_GGB3_Encoder_GGB3CLv2 --tensorboard_dir Restormer_GGB3_Encoder_GGB3CLv2 \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 \
+--epochs 90
+
+# Restormer_Pre_GGB3_Encoder
+python main.py --trainer_mode train --network Restormer_GGB3_Encoder \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_Pre_GGB3_Encoder_v2 --tensorboard_dir Restormer_Pre_GGB3_Encoder_v2 \
+
+
+
+
+# PromptIR
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network PromptIR \
+--checkpoint_dir PromptIR --tensorboard_dir PromptIR \
+
+
+# AMIR
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network AMIR \
+--checkpoint_dir AMIR --tensorboard_dir AMIR \
+
+# PIPNet_Restormer_onskip_inter
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network PIPNet_Restormer_onskip_inter \
+--checkpoint_dir PIPNet_Restormer_onskip_inter_v2 --tensorboard_dir PIPNet_Restormer_onskip_inter_v2 \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/deeplession/all/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 \
+--lr 36e-5  --beta1 0.9 --beta2 0.999 --weight_decay 0.01
+
+# NAFNet
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network NAFNet \
+--checkpoint_dir NAFNet --tensorboard_dir NAFNet \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/NAFNet/NAFNet-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/NAFNet/NAFNet-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 --epochs 90
+
+# Retore_RWKV 
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network Restore_RWKV \
+--checkpoint_dir Restore_RWKV_trainer --tensorboard_dir Restore_RWKV_trainer \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/deeplession/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/deeplession/" \
+--dataset_name deeplession \
+--dataset_shape 256 \
+--epochs 90
+
+
+# Restore_RWKV_GGB3_Encoder
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network Restore_RWKV_GGB3_Encoder \
+--checkpoint_dir Restore_RWKV_GGB3_Encoder --tensorboard_dir Restore_RWKV_GGB3_Encoder \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/tb/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/Restore_RWKV_GGB3_Encoder/Restore_RWKV_GGB3_Encoder-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/Restore_RWKV_GGB3_Encoder/Restore_RWKV_GGB3_Encoder-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+--num_train 10 --num_val 10 
+
+# NAFNet_GGB3_Encoder
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network NAFNet_GGB3_Encoder \
+--checkpoint_dir NAFNet_GGB3_Encoder --tensorboard_dir NAFNet_GGB3_Encoder \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--num_train 10 --num_val 10
+
+# PIPNet_Restormer_onskip_interV2
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network PIPNet_Restormer_onskip_interV2 \
+--checkpoint_dir default --tensorboard_dir default \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--num_train 10 --num_val 10 \
+--lr 36e-5 --beta1 0.9 --beta2 0.999 --weight_decay 0.01 --epochs 300
+
+# PIPNet_Restormer_onskip_interV3
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network PIPNet_Restormer_onskip_interV3 \
+--checkpoint_dir PIPNet_Restormer_onskip_interV3_dino_NoTTune --tensorboard_dir PIPNet_Restormer_onskip_interV3_dino_NoTTune \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/tb/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/PIPNet_Restormer_onskip_interV3_dino_NoTTune/PIPNet_Restormer_onskip_interV3_dino_NoTTune-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt/PIPNet_Restormer_onskip_interV3_dino_NoTTune/PIPNet_Restormer_onskip_interV3_dino_NoTTune-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--lr 36e-5 --beta1 0.9 --beta2 0.999 --weight_decay 0.01 --epochs 130
+
+# PIPNet_Restormer_onskip_interV4
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network PIPNet_Restormer_onskip_interV4 \
+--checkpoint_dir PIPNet_Restormer_onskip_interV4 --tensorboard_dir PIPNet_Restormer_onskip_interV4 \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--lr 36e-5 --beta1 0.9 --beta2 0.999 --weight_decay 0.01 --epochs 130
+
+# D3DIR_V2
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network D3DIR_V2 \
+--checkpoint_dir default --tensorboard_dir default \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# Restormer_Pre_GGB3_Encoder_CL
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network Restormer_GGB3_Encoder_CL \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir Restormer_Pre_GGB3_Encoder_CL --tensorboard_dir Restormer_Pre_GGB3_Encoder_CL \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--resume --net_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/Restormer_Pre_GGB3_Encoder_CL/Restormer_Pre_GGB3_Encoder_CL-net-current.pth" \
+--resume_opt --opt_checkpath "/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/Restormer_Pre_GGB3_Encoder_CL/Restormer_Pre_GGB3_Encoder_CL-opt-current.pth" \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# Restormer_Pre_GGB3_Encoder_GGB3CLv2
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network Restormer_GGB3_Encoder_GGB3CLv2 \
+--PretrainWeight "/mnt/nas/wsy/Codes/NewCodes/Demo1/pretrain_weight/PretrainEncoder.pth" \
+--checkpoint_dir default --tensorboard_dir default \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# D3DIR_V3
+CUDA_VISIBLE_DEVICES=3 python main.py --trainer_mode train --network D3DIR_V3 \
+--checkpoint_dir D3DIR_V3 --tensorboard_dir D3DIR_V3 \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# D3DIR_V4
+CUDA_VISIBLE_DEVICES=0 python main.py --trainer_mode train --network D3DIR_V4 \
+--checkpoint_dir D3DIR_V4_v2 --tensorboard_dir D3DIR_V4_v2 \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--num_train 10 --num_val 10 --epochs 90
+
+# D3DIR_V4_Encoder
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network D3DIR_V4_Encoder \
+--checkpoint_dir D3DIR_V4_Encoder --tensorboard_dir D3DIR_V4_Encoder \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# Tune DinoV2 : dinov2_decoder
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network dinov2_decoder \
+--checkpoint_dir dinov2_decoder --tensorboard_dir dinov2_decoder \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# mobileNetV2 classfier train 
+CUDA_VISIBLE_DEVICES=1 python main.py --trainer_mode train --network MobileNetV2 \
+--checkpoint_dir MobileNetV2_cls --tensorboard_dir MobileNetV2_cls \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
+
+# dinov2 
+CUDA_VISIBLE_DEVICES=2 python main.py --trainer_mode train --network dinov2 \
+--checkpoint_dir dinov2 --tensorboard_dir dinov2 \
+--checkpoint_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/ckpt2/' \
+--tensorboard_root '/mnt/nas/wsy/Codes/NewCodes/demo4/Experiments/resume/aapm/tb2/' \
+--dataset_path "/mnt/nas/wsy/Codes/NewCodes/demo4/datasets/aapm/" \
+--dataset_name aapm \
+--dataset_shape 256 \
+--epochs 90
